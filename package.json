@@ -26,7 +26,7 @@
     "access": "public"
   },
   "scripts": {
-    "postinstall": "prebuild-install || pnpm run build:rust",
+    "postinstall": "prebuild-install",
     "build": "tsup",
     "build:rust": "napi build --release",
     "type-check": "tsc --noEmit"

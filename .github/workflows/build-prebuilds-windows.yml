@@ -75,7 +75,7 @@ jobs:
         if: steps.check_version.outputs.changed == 'true'
         run: |
           pnpm config set auto-install-peers false
-          pnpm install
+          pnpm install --ignore-scripts
 
       - name: Build JS
         if: steps.check_version.outputs.changed == 'true'
