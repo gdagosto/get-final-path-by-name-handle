@@ -1,6 +1,6 @@
 {
   "name": "get-final-path-by-name-handle",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -26,6 +26,7 @@
     "access": "public"
   },
   "scripts": {
+    "postinstall": "prebuild-install",
     "build": "tsup",
     "build:rust": "napi build --release",
     "type-check": "tsc --noEmit"
