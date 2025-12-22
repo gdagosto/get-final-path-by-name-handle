@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'package.json'
+      - "package.json"
   workflow_dispatch: {}
 
 permissions:
@@ -16,7 +16,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        node: [20,22,24]
+        node: [20, 22, 24]
         arch: [x64]
     steps:
       - name: Checkout
@@ -127,16 +127,26 @@ jobs:
 
       - name: Create GitHub Release
         id: create_release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ steps.check_version.outputs.version }}
         if: steps.check_version.outputs.changed == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: pwsh
+        run: |
+          $tag = "v${{ steps.check_version.outputs.version }}"
+          Write-Host "Ensuring tag $tag exists on origin"
+          $exists = git ls-remote --tags origin $tag
+          if (-not $exists) {
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git tag -a $tag -m "Release $tag"
+            git push origin $tag
+            Write-Host "Pushed tag $tag"
+          } else {
+            Write-Host "Tag $tag already exists"
+          }
 
-      - name: Upload prebuild asset
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.check_version.outputs.version }}
           files: ${{ env.PACKAGE }}
         if: steps.check_version.outputs.changed == 'true'
         env:
