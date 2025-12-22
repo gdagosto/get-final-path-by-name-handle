@@ -1,6 +1,6 @@
 {
-  "name": "@gdagosto/get-final-path-by-name-handle",
-  "version": "0.1.0",
+  "name": "get-final-path-by-name-handle",
+  "version": "0.1.1",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -22,6 +22,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "postinstall": "prebuild-install || pnpm run build:rust",
     "build": "tsup",
