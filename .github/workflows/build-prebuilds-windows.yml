@@ -73,7 +73,9 @@ jobs:
 
       - name: Install dependencies
         if: steps.check_version.outputs.changed == 'true'
-        run: pnpm install
+        run: |
+          pnpm config set auto-install-peers false
+          pnpm install
 
       - name: Build JS
         if: steps.check_version.outputs.changed == 'true'
