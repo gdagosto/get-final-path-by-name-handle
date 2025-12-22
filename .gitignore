@@ -1,3 +1,6 @@
 node_modules
 target
-index.node
+dist
+
+*.node
+*.tgz
