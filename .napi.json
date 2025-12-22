@@ -1,0 +1,5 @@
+{
+  "name": "mt5_path_addon",
+  "binaryName": "mt5_path_addon",
+  "targets": ["win32-x64-msvc", "x86_64-pc-windows-msvc"]
+}
