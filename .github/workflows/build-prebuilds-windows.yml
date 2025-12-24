@@ -96,7 +96,7 @@ jobs:
       - name: Collect built .node and package prebuild
         shell: pwsh
         run: |
-          $pkg = "get-final-path-by-name-handle-${{ steps.check_version.outputs.version }}-${{ steps.nodeabi.outputs.NODE_ABI }}-win32-${{ matrix.arch }}.tar.gz"
+          $pkg = "get-final-path-by-name-handle-v${{ steps.check_version.outputs.version }}-${{ steps.nodeabi.outputs.NODE_ABI }}-win32-${{ matrix.arch }}.tar.gz"
           Remove-Item -Recurse -Force prepack -ErrorAction SilentlyContinue
           New-Item -ItemType Directory -Path prepack | Out-Null
           # copy single .node to prepack root and name it index.node
