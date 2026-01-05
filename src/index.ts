@@ -11,3 +11,7 @@ try {
 export function getFinalPathByNameHandle(nameHandle: string): string {
   return addon.getFinalPathNameByHandle(nameHandle);
 }
+
+export function getExecutablePath(path: string): string {
+  return addon.getExecutablePath(path);
+}
